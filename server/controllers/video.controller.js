@@ -53,36 +53,6 @@ const getAllVideos = async (req, res) => {
   res.status(200).send(videos);
 };
 
-const getOnePost = async (req, res) => {
-  let id = req.params.id;
-  let post = await Post.findByPk(id);
-  res.status(200).send(post);
-};
 
-const updatePost = async (req, res) => {
-  try {
-    let id = req.params.id
-    await Post.update(req.body,{
-      where:{
-        id:id
-      } 
-    })
-    let updatedPost = await Post.findByPk(id)
-    return res.status(200).send(updatedPost)
-  } catch (error) {
-    console.log(error)
-  }
- 
-}
-
-const deletePost = async (req, res) => {
-  let id = req.params.id;
-  await Post.destroy({
-    where: {
-      id: id,
-    },
-  });
-  res.status(200).send("Post Deleted");
-};
 
 module.exports = {upload, createVideo, getAllVideos};
